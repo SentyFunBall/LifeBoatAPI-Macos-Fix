@@ -1,5 +1,9 @@
 # Stormworks Lua with LifeBoatAPI
 
+# All original credit to [Nameous Changey and LifeBoatAPI](https://github.com/nameouschangey/Stormworks_VSCodeExtension)
+## This is a fixed* version of LifeBoatAPI for macOS and Linux (linux not tested). The screen simulator still doesn't work - that's a Windows program. However I have tweaked the build process to allow for macOS users to write Stormworks lua code with all the features of LifeBoat API and VSCode Intellisense, and be able to build their multi-file projects and even minimize them.
+No, I do not intend on porting the screen simulator soon.
+If you experience issues, please let me know on Discord (@sentyfunball) or make an issue here.
 
 An extension to provide proper build processes to the Stormworks community.
 
