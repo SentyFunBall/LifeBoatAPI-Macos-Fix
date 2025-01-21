@@ -7,8 +7,8 @@ If you experience issues, please let me know on Discord (@sentyfunball) or make 
 
 To install:
 - Download or clone repo
-- Copy into `/Users/[user]/.vscode/extensions` (.vscode folder may be hidden - press Cmd+Shift+. to view hidden folders)
-- Replace existing files
+- Copy into `/Users/[user]/.vscode/extensions/nameouschangey.lifeboatapi-0.0.33` (.vscode folder may be hidden - press Cmd+Shift+. to view hidden folders)
+- Replace existing files (If you aren't prompted to replace existing files, you've pasted something wrong.)
 - Relaunch VSCode
 - Follow Quick Start guide below
 
