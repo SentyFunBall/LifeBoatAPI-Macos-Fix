@@ -22,8 +22,8 @@ require("LifeBoatAPI.Tools.Build.HexadecimalConverter")
 ---@field shortenVariables      boolean if true, shortens variables down to 1 or 2 character names
 ---@field shortenGlobals        boolean if true, shortens the sw-global functions, such as screen.drawRect, to e.g. s=screen.drawRect
 ---@field shortenNumbers        boolean if true, shortens numbers, including removing duplicate number literals and removing leading 0s
----@field forceNCBoilerplate    boolean (recommend false) forces the NC boilerplate to be output, even if it makes the file exceed 4000 characters
----@field forceBoilerplate      boolean (recommend false) forces the user boilerplate to be output, even if it makes the file exceed 4000 characters
+---@field forceNCBoilerplate    boolean (recommend false) forces the NC boilerplate to be output, even if it makes the file exceed 8000 characters
+---@field forceBoilerplate      boolean (recommend false) forces the user boilerplate to be output, even if it makes the file exceed 8000 characters
 ---@field removeComments        boolean if true, strips all comments from the output
 ---@field shortenStringDuplicates boolean if true, reduce duplicate string literals
 ---@field skipCombinedFileOutput  boolean if true, doesn't output the combined file - to speed up the build process
@@ -143,8 +143,8 @@ LifeBoatAPI.Tools.Minimizer = {
         local sizeWithoutBoilerplate = #text
 
         local nameousBoilerplateSize = 233 + #tostring(sizeWithoutBoilerplate) + #tostring(#text)
-        local predictedBoilerplateSize = ((this.params.forceNCBoilerplate or (#text + #boilerplate + nameousBoilerplateSize < 4000)) and nameousBoilerplateSize + #boilerplate) 
-                                       or ((this.params.forceBoilerplate or (#text + #boilerplate < 4000)) and #boilerplate)
+        local predictedBoilerplateSize = ((this.params.forceNCBoilerplate or (#text + #boilerplate + nameousBoilerplateSize < 8000)) and nameousBoilerplateSize + #boilerplate) 
+                                       or ((this.params.forceBoilerplate or (#text + #boilerplate < 8000)) and #boilerplate)
                                        or 0
 
         -- add boilerplate if the file is small enough
@@ -157,10 +157,10 @@ LifeBoatAPI.Tools.Minimizer = {
 .. "\n-- Minimized Size: " .. tostring(sizeWithoutBoilerplate) .. " (" .. tostring(sizeWithoutBoilerplate + predictedBoilerplateSize) ..  " with comment) chars"
 
         local addedSpacing = not this.params.removeComments and "\n\n" or ""
-        -- add boilerplate if the file is small enough (4000 chars instead of 4096, gives some slight wiggle room)
-        if(this.params.forceNCBoilerplate or (#text + #boilerplate + #nameousBoilerplate < 4000)) then
+        -- add boilerplate if the file is small enough (8000 chars instead of 8192, gives some slight wiggle room)
+        if(this.params.forceNCBoilerplate or (#text + #boilerplate + #nameousBoilerplate < 8000)) then
             text = boilerplate .. "--\n" .. nameousBoilerplate .. "\n" .. addedSpacing .. text
-        elseif(this.params.forceBoilerplate or #text + #boilerplate < 4000) then
+        elseif(this.params.forceBoilerplate or #text + #boilerplate < 8000) then
             text = boilerplate .. "\n" .. addedSpacing .. text
         end
 
